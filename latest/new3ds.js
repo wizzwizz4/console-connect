@@ -84,13 +84,13 @@ window.document.onhashchange = function(e) {
 				break;
 			case "#enter":
 				controlller("button", "a", true);
-				/*Carry on code from here
-				
-				
-				
-				
-				
-				Unwritten code goes here*/
+				window.history.back();
+				hashReady = false;
+				controlller("button", "a", false);
+				break;
+			case default:
+				hashReady = false;
+				break;
 		};
 	} else {
 		switch(window.location.hash) {
@@ -106,6 +106,11 @@ window.document.onhashchange = function(e) {
 				break;
 			case default:
 				window.location.hash = "";
+				break;
 		};
 	};
+};
+window.onscroll = function(e){
+	control("circle", window.scrollx - 1000, window.scrolly - 1000);
+	window.scrollTo(1000, 1000);
 };
