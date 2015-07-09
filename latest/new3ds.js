@@ -11,7 +11,7 @@ function controller() {
 				case "down":
 				case "left":
 				case "right":
-					arguments.callee.d[arguments[1]] = !!arguments[2]
+					arguments.callee.d[arguments[1]] = !!arguments[2];
 					break;
 				case default:
 					throw new Error("controller(), case \"d\", received \""+arguments[1]+"\" as second argument");
@@ -19,6 +19,22 @@ function controller() {
 			};
 			break;
 		case "button":
+			switch(arguments[1]) {
+				case "a":
+				case "x":
+				case "y":
+				case "r":
+				case "zl":
+				case "zr":
+					arguments.callee.button[arguments[1]] = !!arguments[2];
+					window.dispatchEvent(new CustomEvent("controller", {type: "button", button: arguments[1], state: arguments.callee.button[arguments[1]]}));
+					break;
+				case "b":
+				case "l":
+					arguments.callee.button.b = !!arguments[2];
+					break;
+					window.dispatchEvent(new CustomEvent("controller", {type: "button", button: arguments[1], state: arguments.callee.button.b}));
+			};
 			break;
 		case default:
 			throw new Error("Unsupported controller \""+arguments[0]+"\"!");
@@ -58,7 +74,23 @@ window.document.onhashchange = function(e) {
 		switch(window.location.hash) {
 			case "#back":
 				controller("button", "b", true);
+				window.history.forward();
+				controller("button", "b", false);
 				break;
+			case "#forward":
+				controller("button", "r", true);
+				window.history.back();
+				controller("button", "r", false);
+				break;
+			case "#enter":
+				controlller("button", "a", true);
+				/*Carry on code from here
+				
+				
+				
+				
+				
+				Unwritten code goes here*/
 		};
 	} else {
 		switch(window.location.hash) {
