@@ -49,3 +49,24 @@ window.document.onkeydown = function(e) {
 			break;
 	};
 };
+hashReady = false
+window.document.onhashchange = function(e) {
+	if (hashReady) {
+		//switch
+	} else {
+		switch (window.location.hash) {
+			case "":
+				window.location.hash = "#back";
+				break;
+			case "#back":
+				window.location.hash = "#normal";
+				break;
+			case "#normal":
+				window.location.hash = "#forward";
+				hashReady = true;
+				break;
+			case default:
+				window.location.hash = "";
+		};
+	};
+};
