@@ -17,6 +17,9 @@ function controller() {
 					throw new Error("controller(), case \"d\", received \""+arguments[1]+"\" as second argument");
 					break;
 			};
+			break;
+		case "button":
+			break;
 		case default:
 			throw new Error("Unsupported controller \""+arguments[0]+"\"!");
 			break;
@@ -52,9 +55,11 @@ window.document.onkeydown = function(e) {
 hashReady = false
 window.document.onhashchange = function(e) {
 	if(hashReady) {
-		/*switch(window.location.hash) {
+		switch(window.location.hash) {
 			case "#back":
-		};*/
+				controller("button", "b", true);
+				break;
+		};
 	} else {
 		switch(window.location.hash) {
 			case "":
