@@ -6,7 +6,7 @@ function controller() {
 			arguments.callee[arguments[0]].y = arguments[2];
 			break;
 		case "d":
-			switch (arguments[1]) {
+			switch(arguments[1]) {
 				case "up":
 				case "down":
 				case "left":
@@ -37,7 +37,7 @@ controller.d = {
 	right: false
 };
 window.document.onkeydown = function(e) {
-	switch (e.keycode) {
+	switch(e.keycode) {
 		case 37:
 		case 38:
 		case 39:
@@ -51,10 +51,12 @@ window.document.onkeydown = function(e) {
 };
 hashReady = false
 window.document.onhashchange = function(e) {
-	if (hashReady) {
-		//switch
+	if(hashReady) {
+		/*switch(window.location.hash) {
+			case "#back":
+		};*/
 	} else {
-		switch (window.location.hash) {
+		switch(window.location.hash) {
 			case "":
 				window.location.hash = "#back";
 				break;
