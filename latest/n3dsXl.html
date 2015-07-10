@@ -1,16 +1,21 @@
 <html>
-	<head>
+	<head onload="enterBlock.focus();">
 		<script src="https://rawgit.com/wizzwizz4/console-connect/master/latest/new3ds.js"></script>
 		<style>
+			html, body {
+				margin: 0px;
+			}
 			#touchScreen {
 				position: fixed;
 				top: 0;
-				left: auto;
+				left: 0;
 				right: auto;
 			}
 		</style>
 	</head>
 	<body>
-		<canvas width="320px" height="240px" id="touchScreen"></canvas>
+		<a href="#enter" id="enterBlock" onblur="enterBlock.focus();">
+			<canvas width="320px" height="240px" id="touchScreen"></canvas>
+		</a>
 	</body>
 </html>
