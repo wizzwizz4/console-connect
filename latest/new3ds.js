@@ -2,8 +2,8 @@ function controller() {
 	switch(arguments[0]) {
 		case "circle":
 		case "c":
-			arguments.callee[arguments[0]].x = arguments[1];
-			arguments.callee[arguments[0]].y = arguments[2];
+			arguments.callee[arguments[0]].x = arguments[1]*1;
+			arguments.callee[arguments[0]].y = arguments[2]*1;
 			break;
 		case "d":
 			switch(arguments[1]) {
@@ -36,6 +36,11 @@ function controller() {
 					window.dispatchEvent(new CustomEvent("controller", {type: "button", button: arguments[1], state: arguments.callee.button.b}));
 			};
 			break;
+		case "touch":
+			arguments.callee.touch.x = arguments[1]*1;
+			arguments.callee.touch.y = arguments[2]*1;
+			arguments.callee.touch.down = !!arguments[3];
+			break;
 		case default:
 			throw new Error("Unsupported controller \""+arguments[0]+"\"!");
 			break;
@@ -54,6 +59,11 @@ controller.d = {
 	down: false,
 	left: false,
 	right: false
+};
+controller.touch = {
+	x: 0,
+	y: 0,
+	down: false
 };
 window.document.onkeydown = function(e) {
 	switch(e.keycode) {
