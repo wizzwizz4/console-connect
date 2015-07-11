@@ -65,6 +65,7 @@ controller.touch = {
 	y: 0,
 	down: false
 };
+touchScreen = document.getElementById("touchScreen");
 window.document.onkeydown = function(e) {
 	switch(e.keycode) {
 		case 37:
@@ -78,7 +79,7 @@ window.document.onkeydown = function(e) {
 			break;
 	};
 };
-hashReady = false
+hashReady = false;
 window.document.onhashchange = function(e) {
 	if(hashReady) {
 		switch(window.location.hash) {
@@ -120,7 +121,10 @@ window.document.onhashchange = function(e) {
 		};
 	};
 };
-window.onscroll = function(e){
+window.onscroll = function(e) {
 	control("circle", window.scrollx - 1000, window.scrolly - 1000);
 	window.scrollTo(1000, 1000);
+};
+touchScreen.onmousemove = function(e) {
+	control("touch", e.clientX, e.clientY, (e.buttons > 0));
 };
