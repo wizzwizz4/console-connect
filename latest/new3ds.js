@@ -4,6 +4,7 @@ function controller() {
 		case "c":
 			arguments.callee[arguments[0]].x = arguments[1]*1;
 			arguments.callee[arguments[0]].y = arguments[2]*1;
+			window.dispatchEvent(new CustomEvent("controller", {type: arguments[0], x: arguments.callee[arguments[0]].x, y: arguments.callee[arguments[0]].y}));
 			break;
 		case "d":
 			switch(arguments[1]) {
@@ -12,6 +13,7 @@ function controller() {
 				case "left":
 				case "right":
 					arguments.callee.d[arguments[1]] = !!arguments[2];
+					window.dispatchEvent(new CustomEvent("controller", {type: "d", direction: arguments[1], state: arguments.callee.d[arguments[1]]}));
 					break;
 				case default:
 					throw new Error("controller(), case \"d\", received \""+arguments[1]+"\" as second argument");
@@ -40,6 +42,7 @@ function controller() {
 			arguments.callee.touch.x = arguments[1]*1;
 			arguments.callee.touch.y = arguments[2]*1;
 			arguments.callee.touch.down = !!arguments[3];
+			window.dispatchEvent(new CustomEvent("controller", {type: "touch", x: arguments.callee.touch.x, y: arguments.callee.touch.y}));
 			break;
 		case default:
 			throw new Error("Unsupported controller \""+arguments[0]+"\"!");
